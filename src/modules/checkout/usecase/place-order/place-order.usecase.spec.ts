@@ -150,7 +150,8 @@ describe('PlaceOrderUseCase unit test', () => {
             }
 
             const mockInvoiceFacade = {
-                create: jest.fn().mockResolvedValue({ id: "1i" })
+                create: jest.fn().mockResolvedValue({ id: "1i" }),
+                find: jest.fn()
             }
 
             const placeOrderUseCase = new PlaceOrderUseCase(

@@ -1,5 +1,3 @@
-import Address from "../../@shared/domain/value-object/address";
-
 export interface GenerateInvoiceUseCaseInputDto {
     name: string;
     document: string;
@@ -32,23 +30,4 @@ export interface GenerateInvoiceUseCaseOutputDto {
         price: number;
     }[];
     total: number;
-}
-
-export interface FindClientUseCaseInputDto {
-    id: string
-}
-
-export interface FindClientUseCaseOutputDto {
-    id: string
-    name: string
-    email: string
-    document: string
-    address: Address
-    createdAt: Date
-    updatedAt: Date
-}
-
-export default interface InvoiceFacadeInterface {
-    create(input: GenerateInvoiceUseCaseInputDto): Promise<GenerateInvoiceUseCaseOutputDto>;
-    find(input: FindClientUseCaseInputDto): Promise<FindClientUseCaseOutputDto>;
 }
