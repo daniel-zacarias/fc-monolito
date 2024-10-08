@@ -7,21 +7,25 @@ import { ClientModel } from "./client.model";
 export default class ClientRepository implements ClientGateway {
 
     async add(entity: Client): Promise<void> {
+        try {
+            await ClientModel.create({
+                id: entity.id.id,
+                name: entity.name,
+                email: entity.email,
+                document: entity.document,
+                street: entity.address.street,
+                number: entity.address.number,
+                complement: entity.address.complement,
+                city: entity.address.city,
+                state: entity.address.state,
+                zipcode: entity.address.zipCode,
+                createdAt: entity.createdAt,
+                updatedAt: entity.updatedAt
+            })
+        } catch (error) {
+            console.log(error);
+        }
 
-        await ClientModel.create({
-            id: entity.id.id,
-            name: entity.name,
-            email: entity.email,
-            document: entity.document,
-            street: entity.address.street,
-            number: entity.address.number,
-            complement: entity.address.complement,
-            city: entity.address.city,
-            state: entity.address.state,
-            zipcode: entity.address.zipCode,
-            createdAt: entity.createdAt,
-            updatedAt: entity.updatedAt
-        })
     }
 
     async find(id: string): Promise<Client> {

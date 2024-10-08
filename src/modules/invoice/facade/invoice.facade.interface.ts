@@ -39,13 +39,24 @@ export interface FindClientUseCaseInputDto {
 }
 
 export interface FindClientUseCaseOutputDto {
-    id: string
-    name: string
-    email: string
-    document: string
-    address: Address
-    createdAt: Date
-    updatedAt: Date
+    id: string;
+    name: string;
+    document: string;
+    address: {
+        street: string;
+        number: string;
+        complement: string;
+        city: string;
+        state: string;
+        zipCode: string;
+    };
+    items: {
+        id: string;
+        name: string;
+        price: number;
+    }[];
+    total: number;
+    createdAt: Date;
 }
 
 export default interface InvoiceFacadeInterface {

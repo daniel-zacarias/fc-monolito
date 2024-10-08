@@ -1,5 +1,5 @@
 import { Sequelize } from "sequelize-typescript"
-import ProductModel from "./product.model";
+import ProductModelRegistration from "./product.model";
 import Product from "../domain/product.entity";
 import Id from "../../@shared/domain/value-object/id.value-object";
 import ProductRepository from "./product.repository";
@@ -15,7 +15,7 @@ describe('Product Repository tests', () => {
             sync: { force: true }
         });
 
-        sequelize.addModels([ProductModel]);
+        sequelize.addModels([ProductModelRegistration]);
         await sequelize.sync()
     })
 
@@ -35,7 +35,7 @@ describe('Product Repository tests', () => {
         const productRepository = new ProductRepository();
         await productRepository.add(produt);
 
-        const productDb = await ProductModel.findOne({ where: { id: productProps.id.id } });
+        const productDb = await ProductModelRegistration.findOne({ where: { id: productProps.id.id } });
 
         expect(productProps.id.id).toEqual(productDb.id);
         expect(productProps.name).toEqual(productDb.name);
@@ -48,11 +48,12 @@ describe('Product Repository tests', () => {
     it("Should find a product", async () => {
         const productRepository = new ProductRepository();
 
-        ProductModel.create({
+        ProductModelRegistration.create({
             id: "1",
             name: "Product 1",
             description: "Product 1 description",
             purchasePrice: 400,
+            salesPrice: 440,
             stock: 11,
             createdAt: new Date(),
             updatedAt: new Date()
