@@ -17,8 +17,8 @@ import TransactionModel from "../../modules/payment/repository/transaction.model
 export const app: Express = express();
 
 app.use(express.json());
-app.use("/client", clientRoute);
-app.use("/product", productRoute);
+app.use("/clients", clientRoute);
+app.use("/products", productRoute);
 app.use("/invoice", invoiceRoute);
 app.use("/checkout", checkoutRoute);
 

@@ -14,10 +14,10 @@ productRoute.post("/", async (req: Request, res: Response) => {
             stock: req.body.stock
         };
         await facade.addProduct(input);
+        console.log(input)
         res.status(201).send({ message: `Product has been created!` })
     } catch (err) {
         console.log(err);
         res.status(500).send(err);
     }
-
 });

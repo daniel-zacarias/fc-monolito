@@ -28,7 +28,7 @@ describe('E2E test for customer', () => {
 
     it("Should create customer", async () => {
         const response = await request(app)
-            .post("/client")
+            .post("/clients")
             .send({
                 name: "John",
                 address: {
@@ -49,7 +49,7 @@ describe('E2E test for customer', () => {
 
     it("Should not create customer", async () => {
         const response = await request(app)
-            .post("/client")
+            .post("/clients")
             .send({
                 name: "John"
             })
