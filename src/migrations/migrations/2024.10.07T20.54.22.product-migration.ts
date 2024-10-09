@@ -2,7 +2,6 @@ import { DataTypes, Sequelize } from 'sequelize';
 import { MigrationFn } from 'umzug';
 
 export const up: MigrationFn<Sequelize> = async ({ context: sequelize }) => {
-    // Criação da tabela clients
     await sequelize.getQueryInterface().createTable('client', {
         id: {
             type: DataTypes.STRING,
@@ -55,7 +54,6 @@ export const up: MigrationFn<Sequelize> = async ({ context: sequelize }) => {
         }
     })
 
-    // Criação da tabela order
     await sequelize.getQueryInterface().createTable('order', {
         id: {
             type: DataTypes.STRING,
@@ -66,7 +64,7 @@ export const up: MigrationFn<Sequelize> = async ({ context: sequelize }) => {
             type: DataTypes.STRING,
             allowNull: false,
             references: {
-                model: 'client', // Nome da tabela pai (invoice)
+                model: 'client',
                 key: 'id',
             },
             onUpdate: 'CASCADE',
@@ -78,7 +76,6 @@ export const up: MigrationFn<Sequelize> = async ({ context: sequelize }) => {
         }
     });
 
-    // Criação da tabela invoice
     await sequelize.getQueryInterface().createTable('invoice', {
         id: {
             type: DataTypes.STRING,
@@ -127,7 +124,6 @@ export const up: MigrationFn<Sequelize> = async ({ context: sequelize }) => {
         }
     });
 
-    // Criação da tabela invoice_item
     await sequelize.getQueryInterface().createTable('invoice_item', {
         id: {
             type: DataTypes.STRING,
@@ -146,13 +142,14 @@ export const up: MigrationFn<Sequelize> = async ({ context: sequelize }) => {
             type: DataTypes.STRING,
             allowNull: false,
             references: {
-                model: 'invoice', // Nome da tabela pai (invoice)
+                model: 'invoice',
                 key: 'id',
             },
             onUpdate: 'CASCADE',
             onDelete: 'CASCADE',
         },
     });
+
     await sequelize.getQueryInterface().createTable('products', {
         id: {
             type: DataTypes.STRING(255),
